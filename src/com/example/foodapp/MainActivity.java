@@ -19,8 +19,9 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -29,19 +30,36 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+        case R.id.action_search:
+        	openSearch();
+        	return true;
+        
+        case R.id.action_settings:
+        	openSettings();
+        	return true;
+        default: 
+        	return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+        
     }
     
-    /** Called when the user clicks the Send button */
+    private void openSettings() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	private void openSearch() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	/** Called when the user clicks the Send button */
     public void sendMessage(View view){
     	// Do something in response to the button
     	Intent intent = new Intent(this, DisplayMessageActivity.class);
-    	EditText editText = (EditText) findViewById(R.id.edit_message);
-    	String message = editText.getText().toString();
-    	intent.putExtra(EXTRA_MESSAGE, message);
     	startActivity(intent);
     }
 
